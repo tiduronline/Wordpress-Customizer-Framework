@@ -33,5 +33,5 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 <b><h2>How to use</h2></b>
 
 Just copy this folder to the your wordpress theme, and then add this to your functions.php
-<pre>test</pre>
+<pre>require_once( get_template_directory_uri() . '/customizer/customizer-data.php' );</pre>
 
