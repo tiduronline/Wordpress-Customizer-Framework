@@ -80,6 +80,14 @@
 /* =====================================================================================================*
  *  General Typography										 												*
  * =====================================================================================================*/
+	require_once( get_template_directory_uri() . '/customizer/googlefont-control.php' );  
+	$fetch_font = new Google_Font_Dropdown_Custom_Control();
+
+	$fonts = $fetch_font->get_fonts();
+
+	foreach ($fonts as $key => $value) {
+		$gfont[$value->family] = $value->family;
+	}
 
 	$sections[] = array(
 		'slug'		=> 'joglo_genaral_typography',
@@ -96,6 +104,7 @@
 			'selector'	=> '#celi',
 			'property'	=> 'background',
 			'transport'	=> 'postMessage',
+			'choices'	=> $gfont,
 			'type' 		=> 'font'
 		);
 

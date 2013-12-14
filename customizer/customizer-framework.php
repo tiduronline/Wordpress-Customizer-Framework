@@ -98,6 +98,32 @@ function joglo_theme_customizer_register( $wp_customize ) {
 					array( 
 						'label' 		=> __( $color['label'], 'joglo' ), 
 						'section' 		=> $color['section'],
+						'default' 		=> $color['default'],
+						'priority'		=> $priority,
+						'settings' 		=> $color['slug'], 
+						'choices'		=> $color['choices'], 
+						'type'			=> 'select'
+						)
+					));
+
+				break;
+
+			case 'select_font' :
+
+				$wp_customize->add_setting( $color['slug'], 
+					array(
+						'default' 		=> $color['default'],
+						'type' 			=> 'theme_mod', 
+						'transport'   	=> $transport,
+						'capability' 	=> 'edit_theme_options'
+					) );
+				
+				$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 
+					$color['slug'], 
+					array( 
+						'label' 		=> __( $color['label'], 'joglo' ), 
+						'section' 		=> $color['section'],
+						'default' 		=> $color['default'],
 						'priority'		=> $priority,
 						'settings' 		=> $color['slug'], 
 						'choices'		=> $color['choices'], 
@@ -135,7 +161,7 @@ function joglo_theme_customizer_register( $wp_customize ) {
 				    	'default'	=> $color['default'],
 				) );
 				 
-				$wp_customize->add_control( new Joglo_Customize_Textarea_Control( $wp_customize, 
+				$wp_customize->add_control( new Tokokoo_Customize_Textarea_Control( $wp_customize, 
 					$color['slug'], 
 					array(
 					    'label'   		=> __( $color['label'], 'joglo' ),
@@ -170,7 +196,7 @@ function joglo_theme_customizer_register( $wp_customize ) {
 
 				$wp_customize->add_setting( $color['slug'], 
 					array(
-		            	'default'        => $color['default'],
+		            	'default'        => __( $color['label'], 'joglo' ),
 		        ) );
 
 		        $wp_customize->add_control( new Google_Font_Dropdown_Custom_Control( $wp_customize, 
@@ -179,7 +205,7 @@ function joglo_theme_customizer_register( $wp_customize ) {
 			            'label'   		=> __( $color['label'], 'joglo' ),
 			            'section' 		=> $color['section'],
 			            'priority'		=> $priority,
-			            'settings'   	=> $color['slug'],
+			            'settings'   	=> $color['slug']
 			        ) ) );
 
 				break;
@@ -231,15 +257,28 @@ function joglo_customizer_css() {
 			$property = $color['property'];
 		} else {
 			$property = '';
+		}
+
+		if ( ! empty( $color['property2'] ) ) {
+			$property2 = $color['property2'];
+		} else {
+			$property2 = '';
 		}	
 
 		$selectors 	= $color['selector'];
 		$newvalue	= get_theme_mod( $color['slug'] );
-		$style 		.=  $selectors. " { $property : $newvalue; } ";
+
+		if ( $color['type'] == 'color' ) {
+			$style .=  $selectors. " { $property : $newvalue; } ";
+		} else if ( $color['type'] == 'images' ) {
+			$style .=  $selectors. " { $property : url('".$newvalue."') $property2; } ";
+		} else if ( $color['type'] == 'select_font' ) {
+			$style .=  $selectors. " { $property : '".$newvalue."' $property2; } ";
+		}
 
 	}
 
-	$style = "\n" . '<style type="text/css">' . wp_filter_nohtml_kses( $style ) . '</style>' . "\n";
+	$style = "\n" . '<style type="text/css">' . trim( $style ) . '</style>' . "\n";
 
 	echo $style;
 
