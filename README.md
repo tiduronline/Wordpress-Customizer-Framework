@@ -15,7 +15,7 @@ Author URI: http://www.alispx.me
 
 Plugin URI: -
 
-Donate link: 
+Donate link: <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=alispx%40gmail%2ecom&lc=ID&item_name=alispx&item_number=customizer&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted"> Donate Now</a>
 
 Tags: theme customizer, wordpress customizer, wordpress theme customizer, wordpress customization API
 
