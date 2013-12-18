@@ -25,14 +25,14 @@ function joglo_theme_customizer_register( $wp_customize ) {
 
 	global $colors, $sections;
 
-	require_once( get_template_directory_uri() . '/customizer/textarea-control.php' );
-	require_once( get_template_directory_uri() . '/customizer/googlefont-control.php' );
-	require_once( get_template_directory_uri() . '/customizer/customizer-data.php' );
+	require_once( get_template_directory() . '/customizer/textarea-control.php' );
+	require_once( get_template_directory() . '/customizer/googlefont-control.php' );
+	require_once( get_template_directory() . '/customizer/customizer-data.php' );
 
 	//create the section from array data
 	foreach ( $sections as $section ) {
 
-		if ( isset ( $section['priority'] ) ) {
+		if ( ! empty( $section['priority'] ) ) {
 			$priority = $section['priority'];
 		} else {
 			$priority = '';
@@ -49,13 +49,13 @@ function joglo_theme_customizer_register( $wp_customize ) {
 	//create the componen from array data
 	foreach ( $colors as $color ) {
 		
-		if ( isset ( $color['transport'] ) ) {
+		if ( ! empty( $color['transport'] ) ) {
 			$transport = $color['transport'];
 		} else {
 			$transport = 'postMessage';
 		}
 
-		if ( isset ( $color['priority'] ) ) {
+		if ( ! empty( $color['priority'] ) ) {
 			$priority = $color['priority'];
 		} else {
 			$priority = '';
@@ -229,7 +229,7 @@ add_action( 'customize_preview_init', 'joglo_customizer_live_preview' , 1 );
 function joglo_customizer_live_preview() {
 	global $colors;
 	
-	require_once( get_template_directory_uri() . '/customizer/customizer-data.php' );  
+	require_once( get_template_directory() . '/customizer/customizer-data.php' );  
 	
 	wp_enqueue_script( 'customizer-preview', get_template_directory_uri().'/customizer/customizer-preview.js', array( 'jquery', 'customize-preview' ), '', true );
 	wp_localize_script(	'customizer-preview', 'custStyle', $colors );
@@ -249,7 +249,7 @@ function joglo_customizer_css() {
 
 	$style = '';
 	
-	require_once( get_template_directory_uri() . '/customizer/theme-customizer.php' );
+	require_once( get_template_directory() . '/customizer/customizer-data.php' );
 
 	foreach ( $colors as $color ) {
 

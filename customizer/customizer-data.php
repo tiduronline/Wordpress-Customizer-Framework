@@ -22,10 +22,10 @@
  * =====================================================================================================*/
 
 	$colors[] = array( 
-		'slug'		=> 'joglo_header_background', 
+		'slug'		=> 'joglo_contoh_color_1', 
 		'default'	=> '#250D07', 
 		'priority'	=> 1, 
-		'label'		=> 'Header Background',
+		'label'		=> 'Contoh Color',
 		'section'	=> 'colors',
 		'selector'	=> '.site-header',
 		'property'	=> 'background',
@@ -33,59 +33,41 @@
 		'type' 		=> 'color'
 	);
 
-/* =====================================================================================================*
- *  Woocommerce Color 										 											*
- * =====================================================================================================*/
-
-	$sections[] = array(
-		'slug'		=> 'joglo_woocommerce_color',
-		'label'		=> 'Woocommerce Colors',
-		'priority'	=> 60,
+	$colors[] = array( 
+		'slug'		=> 'joglo_contoh_text', 
+		'default'	=> 'Text Tes', 
+		'priority'	=> 2, 
+		'label'		=> 'Contoh Text',
+		'section'	=> 'colors',
+		'selector'	=> '.site-header',
+		'property'	=> 'background',
+		'transport'	=> 'postMessage',
+		'type' 		=> 'text'
 	);
 
-		$colors[] = array( 
-			'slug'		=> 'joglo_woo_primary', 
-			'default'	=> '#250D07', 
-			'priority'	=> 1, 
-			'label'		=> 'Primary Color',
-			'section'	=> 'joglo_woocommerce_color',
-			'selector'	=> '.latest-header',
-			'property'	=> 'background',
-			'transport'	=> 'postMessage',
-			'type' 		=> 'color'
-		);
-
-/* =====================================================================================================*
- *  Widget Color 										 												*
- * =====================================================================================================*/
-
-	$sections[] = array(
-		'slug'		=> 'joglo_widget_color',
-		'label'		=> 'Widget Colors',
-		'priority'	=> 70,
+	$colors[] = array( 
+		'slug'		=> 'joglo_contoh_image', 
+		'default'	=> '#250D07', 
+		'priority'	=> 3, 
+		'label'		=> 'Contoh Images',
+		'section'	=> 'colors',
+		'selector'	=> '.site-header',
+		'property'	=> 'background',
+		'transport'	=> 'postMessage',
+		'type' 		=> 'images'
 	);
 
-		$colors[] = array( 
-			'slug'		=> 'joglo_widget_background', 
-			'default'	=> '#250D07', 
-			'priority'	=> 1, 
-			'label'		=> 'Widget Background',
-			'section'	=> 'joglo_widget_color',
-			'selector'	=> '#kopet',
-			'property'	=> 'background',
-			'transport'	=> 'postMessage',
-			'type' 		=> 'color'
-		);
+
 
 /* =====================================================================================================*
  *  General Typography										 												*
  * =====================================================================================================*/
-	require_once( get_template_directory_uri() . '/customizer/googlefont-control.php' );  
+	require_once( get_template_directory() . '/customizer/googlefont-control.php' );  
 	$fetch_font = new Google_Font_Dropdown_Custom_Control();
 
 	$fonts = $fetch_font->get_fonts();
 
-	foreach ($fonts as $key => $value) {
+	foreach ( $fonts as $key => $value ) {
 		$gfont[$value->family] = $value->family;
 	}
 
@@ -97,7 +79,7 @@
 
 		$colors[] = array( 
 			'slug'		=> 'joglo_body_font', 
-			'default'	=> 0, 
+			'default'	=> 'Arial', 
 			'priority'	=> 1, 
 			'label'		=> 'Body Font',
 			'section'	=> 'joglo_genaral_typography',
