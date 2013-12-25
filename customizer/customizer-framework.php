@@ -25,9 +25,9 @@ function joglo_theme_customizer_register( $wp_customize ) {
 
 	global $colors, $sections;
 
-	require_once( get_template_directory() . '/customizer/textarea-control.php' );
-	require_once( get_template_directory() . '/customizer/googlefont-control.php' );
-	require_once( get_template_directory() . '/customizer/customizer-data.php' );
+	require_once( CF_DIR . '/textarea-control.php' );
+	require_once( CF_DIR . '/googlefont-control.php' );
+	require_once( CF_DIR . '/customizer-data.php' );
 
 	//create the section from array data
 	foreach ( $sections as $section ) {
@@ -192,24 +192,6 @@ function joglo_theme_customizer_register( $wp_customize ) {
 
 				break;
 
-			case 'font' :
-
-				$wp_customize->add_setting( $color['slug'], 
-					array(
-		            	'default'        => __( $color['label'], 'joglo' ),
-		        ) );
-
-		        $wp_customize->add_control( new Google_Font_Dropdown_Custom_Control( $wp_customize, 
-		        	$color['slug'], 
-		        	array(
-			            'label'   		=> __( $color['label'], 'joglo' ),
-			            'section' 		=> $color['section'],
-			            'priority'		=> $priority,
-			            'settings'   	=> $color['slug']
-			        ) ) );
-
-				break;
-
 			default:
 				
 				break;
@@ -229,9 +211,9 @@ add_action( 'customize_preview_init', 'joglo_customizer_live_preview' , 1 );
 function joglo_customizer_live_preview() {
 	global $colors;
 	
-	require_once( get_template_directory() . '/customizer/customizer-data.php' );  
+	require_once( CF_DIR . '/customizer-data.php' );  
 	
-	wp_enqueue_script( 'customizer-preview', get_template_directory_uri().'/customizer/customizer-preview.js', array( 'jquery', 'customize-preview' ), '', true );
+	wp_enqueue_script( 'customizer-preview', CF_DIR .'/customizer-preview.js', array( 'jquery', 'customize-preview' ), '', true );
 	wp_localize_script(	'customizer-preview', 'custStyle', $colors );
 
  }
@@ -249,7 +231,7 @@ function joglo_customizer_css() {
 
 	$style = '';
 	
-	require_once( get_template_directory() . '/customizer/customizer-data.php' );
+	require_once( CF_DIR . '/customizer-data.php' );
 
 	foreach ( $colors as $color ) {
 

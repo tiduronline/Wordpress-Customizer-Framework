@@ -62,7 +62,7 @@
 /* =====================================================================================================*
  *  General Typography										 												*
  * =====================================================================================================*/
-	require_once( get_template_directory() . '/customizer/googlefont-control.php' );  
+	require_once( CF_DIR . '/googlefont-control.php' );  
 	$fetch_font = new Google_Font_Dropdown_Custom_Control();
 
 	$fonts = $fetch_font->get_fonts();
@@ -87,7 +87,7 @@
 			'property'	=> 'background',
 			'transport'	=> 'postMessage',
 			'choices'	=> $gfont,
-			'type' 		=> 'font'
+			'type' 		=> 'select_font'
 		);
 
 	

@@ -18,8 +18,8 @@ if ( ! class_exists( 'WP_Customize_Control' ) )
      */
     public function get_fonts( $amount = 50 ) {
         
-        $selectDirectory = get_stylesheet_directory(). '/customizer/';
-        $selectDirectoryInc = get_stylesheet_directory(). '/customizer/';
+        $selectDirectory = CF_DIR;
+        $selectDirectoryInc = CF_DIR;
 
         $finalselectDirectory = '';
 
